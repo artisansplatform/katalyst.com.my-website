@@ -1,0 +1,20 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_525_73)">
+<mask id="mask0_525_73" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="46">
+<path d="M46 0H0V46H46V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_525_73)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23 46C35.7024 46 46 35.7024 46 23C46 10.2974 35.7024 0 23 0C10.2974 0 0 10.2974 0 23C0 35.7024 10.2974 46 23 46ZM23 43.24C34.1782 43.24 43.24 34.1782 43.24 23C43.24 11.8217 34.1782 2.76 23 2.76C11.8217 2.76 2.76 11.8217 2.76 23C2.76 34.1782 11.8217 43.24 23 43.24ZM23 40.48C32.654 40.48 40.48 32.654 40.48 23C40.48 13.3461 32.654 5.52 23 5.52C13.3461 5.52 5.52 13.3461 5.52 23C5.52 32.654 13.3461 40.48 23 40.48ZM23 37.72C31.1296 37.72 37.72 31.1296 37.72 23C37.72 14.8704 31.1296 8.28 23 8.28C14.8704 8.28 8.28 14.8704 8.28 23C8.28 31.1296 14.8704 37.72 23 37.72ZM34.96 23C34.96 29.6054 29.6054 34.96 23 34.96C16.3947 34.96 11.04 29.6054 11.04 23C11.04 16.3947 16.3947 11.04 23 11.04C29.6054 11.04 34.96 16.3947 34.96 23ZM32.2 23C32.2 28.0809 28.0809 32.2 23 32.2C17.919 32.2 13.8 28.0809 13.8 23C13.8 17.919 17.919 13.8 23 13.8C28.0809 13.8 32.2 17.919 32.2 23Z" fill="url(#paint0_linear_525_73)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_525_73" x1="23" y1="0" x2="23" y2="46" gradientUnits="userSpaceOnUse">
+<stop offset="0.0240385" stop-color="#A92CEC"/>
+<stop offset="0.548077" stop-color="#5588C9"/>
+<stop offset="0.975962" stop-color="#10D3AD"/>
+</linearGradient>
+<clipPath id="clip0_525_73">
+<rect width="46" height="46" fill="white"/>
+</clipPath>
+</defs>
+</svg>
