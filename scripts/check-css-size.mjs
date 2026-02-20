@@ -1,7 +1,15 @@
 import { gzipSync } from "node:zlib";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const cssPath = new URL("../assets/css/output.css", import.meta.url);
+const distAssets = resolve(fileURLToPath(new URL("..", import.meta.url)), "dist", "assets");
+const cssFiles = readdirSync(distAssets).filter((f) => f.endsWith(".css"));
+if (!cssFiles.length) {
+  console.error("No CSS file found in dist/assets/. Run `npm run build` first.");
+  process.exit(1);
+}
+const cssPath = resolve(distAssets, cssFiles[0]);
 const cssContent = readFileSync(cssPath, "utf8");
 
 const rawBytes = Buffer.byteLength(cssContent);
