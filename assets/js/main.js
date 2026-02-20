@@ -1,3 +1,5 @@
+import "../css/input.css";
+
 document.addEventListener("DOMContentLoaded", () => {
   const hasGsap = typeof gsap !== "undefined";
   if (hasGsap && typeof ScrollTrigger !== "undefined") {
