@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     link.classList.toggle("active", isActive);
   });
 
+  const currentYear = new Date().getFullYear();
+  document.querySelectorAll("[data-current-year]").forEach((yearNode) => {
+    yearNode.textContent = currentYear;
+  });
+
   // Mobile Menu Functionality ============================
   const nav = document.getElementById("mainNav");
   const menuToggle = document.getElementById("menuToggle");
