@@ -10,6 +10,7 @@
 - Prefer Tailwind utility classes directly in HTML instead of introducing shared component classes in `assets/css/input.css`.
 - Prefer lowercase URL slugs (`/contact-us`, `/solutions`, etc.).
 - Keep JavaScript in `assets/js/` and avoid inline scripts.
+- Always run `npm run format` before committing. The project uses Prettier (`.prettierrc`) — do not manually reformat files or change indentation style.
 
 ## Shared layout expectations
 - Header and footer markup must stay consistent across all pages.
@@ -25,13 +26,13 @@
 - OpenGraph tags (`og:title`, `og:description`, `og:type`)
 
 ## Local development commands
-- `npm run dev` → Tailwind/PostCSS watch + local static server with auto reload.
-- `npm run build` → production CSS build.
+- `npm run dev` → Vite dev server with live reload on port 3000.
+- `npm run build` → production build via Vite, output to `dist/`.
+- `npm run format` → format all HTML/CSS/JS/JSON/MJS files (including `partials/`) with Prettier. Run before every commit.
 - `npm run images:optimize` → convert PNG/JPG images to optimized WebP files.
 
 ## Validation commands
 - `npm run test` checks HTML SEO baseline and clean-link rules.
-- `npm run format` formats HTML/CSS/JS/JSON files with Prettier.
 
 ## Security and hosting notes
 - Security headers and clean URL rewrites are configured in `vercel.json`.

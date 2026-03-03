@@ -1,12 +1,13 @@
 # Katalyst Website
 
-Static marketing website for **katalyst.com.my**, built with semantic HTML, Tailwind/PostCSS, and lightweight JavaScript. The project is optimized for static hosting on Vercel with clean URLs and shared layout partials.
+Static marketing website for **katalyst.com.my**, built with semantic HTML, Tailwind CSS, and lightweight JavaScript. The project uses Vite for local development and production builds, with Handlebars partials for shared layout and Vercel for static hosting.
 
 ## Tech Stack
 
 - HTML pages at the repository root (`*.html`)
-- Tailwind CSS v4 + PostCSS build pipeline
+- Tailwind CSS v4 processed via Vite
 - Vanilla JavaScript in `assets/js/`
+- Handlebars partials for shared header/footer (`partials/`)
 - Static asset pipeline for image optimization (`sharp`)
 - Vercel static hosting configuration (`vercel.json`)
 
@@ -16,26 +17,27 @@ Static marketing website for **katalyst.com.my**, built with semantic HTML, Tail
 .
 ├── assets/
 │   ├── css/
-│   │   ├── input.css      # Source styles (Tailwind + custom utilities/components)
-│   │   └── output.css     # Compiled stylesheet
+│   │   └── input.css          # Source styles (Tailwind + custom utilities/components)
 │   ├── js/
-│   │   └── main.js        # Navigation state, menus, interactions, animations
-│   └── images/            # Page and component images
+│   │   └── main.js            # Navigation state, menus, interactions, animations
+│   └── images/                # Page and component images
 ├── partials/
-│   ├── header.html        # Shared site header template
-│   └── footer.html        # Shared site footer template
+│   ├── header.html            # Shared site header (Handlebars partial)
+│   └── footer.html            # Shared site footer (Handlebars partial)
 ├── scripts/
-│   ├── sync-layout.mjs    # Injects shared header/footer into all HTML pages
-│   ├── check-html.mjs     # SEO + clean link validation checks
-│   └── optimize-images.mjs# Converts PNG/JPG images to optimized WebP
-├── *.html                 # Route pages (served as clean URLs)
+│   ├── check-html.mjs         # SEO + clean link validation checks
+│   ├── optimize-images.mjs    # Converts PNG/JPG images to optimized WebP
+│   └── sync-layout.mjs        # Legacy layout sync helper (kept for reference)
+├── *.html                     # Route pages (served as clean URLs)
+├── .prettierrc                # Prettier formatting config (2-space indent)
+├── vite.config.js             # Vite build config with Handlebars plugin
 ├── package.json
 └── vercel.json
 ```
 
 ## Prerequisites
 
-- Node.js 18+ (recommended)
+- Node.js 18+
 - npm
 
 ## Getting Started
@@ -52,10 +54,7 @@ Static marketing website for **katalyst.com.my**, built with semantic HTML, Tail
    npm run dev
    ```
 
-   This runs:
-   - CSS watcher (`postcss`)
-   - Static dev server with live reload (`browser-sync`) on port `3000`
-   - Layout sync before startup
+   Vite starts a dev server on port `3000` with HMR and Handlebars partial support.
 
 3. Open the site at:
 
@@ -65,25 +64,33 @@ Static marketing website for **katalyst.com.my**, built with semantic HTML, Tail
 
 ## Available Scripts
 
-- `npm run dev` — run local dev workflow (layout sync + CSS watch + static server)
-- `npm run build` — production CSS build (includes layout sync)
+- `npm run dev` — start Vite dev server with live reload (port 3000)
+- `npm run build` — production build output to `dist/` via Vite
+- `npm run format` — format all HTML/CSS/JS/JSON/MJS files with Prettier (including `partials/`)
 - `npm run test` — validate HTML SEO baseline and clean internal links
-- `npm run format` — format HTML/CSS/JS/JSON/MJS files with Prettier
 - `npm run images:optimize` — generate optimized `.webp` files from `.png/.jpg/.jpeg`
 
 ## Content and Layout Notes
 
-- Header/footer are sourced from `partials/` and propagated by `npm run sync:layout`.
+- Header and footer are Handlebars partials (`partials/header.html`, `partials/footer.html`) injected at build/dev time by `vite-plugin-handlebars`. Use `{{> header}}` and `{{> footer footerClass="..." footerCardClass="..."}}` in page files.
 - Keep internal links clean (e.g. `/contact-us`, not `/contact-us.html`).
-- Keep JavaScript in `assets/js/` (avoid inline scripts).
+- Keep JavaScript in `assets/js/` — avoid inline scripts.
 - Active navigation state is resolved in `assets/js/main.js` based on `window.location.pathname`.
+
+## Formatting
+
+This project uses Prettier (config in `.prettierrc`) to enforce consistent formatting:
+
+- 2-space indentation across all HTML, JS, CSS, and config files
+- Run `npm run format` before committing to keep diffs clean
 
 ## Deployment
 
 This project is configured for Vercel static hosting:
 
-- clean URLs enabled
-- trailing slash disabled
-- security headers set globally
+- Vite builds output to `dist/` (set as the Vercel output directory)
+- Clean URLs enabled, trailing slash disabled
+- Long-lived cache headers on `assets/` (immutable), no-cache on HTML
+- Security headers set globally
 
 Deploy by connecting the repository to Vercel or using your existing Vercel pipeline.
