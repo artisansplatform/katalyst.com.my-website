@@ -10,7 +10,14 @@
 - Prefer Tailwind utility classes directly in HTML instead of introducing shared component classes in `assets/css/input.css`.
 - Prefer lowercase URL slugs (`/contact-us`, `/solutions`, etc.).
 - Keep JavaScript in `assets/js/` and avoid inline scripts.
-- Always run `npm run format` before committing. The project uses Prettier (`.prettierrc`) — do not manually reformat files or change indentation style.
+- Always run `npm run format` before committing. The project uses Prettier (`.prettierrc`). Do not manually reformat files or change indentation style.
+
+## Writing rules
+- Never use em dashes anywhere in the codebase. This includes code comments, docstrings, Markdown, HTML, and strings in JS or any other language. Use commas, periods, colons, or parentheses instead.
+- Prefer simple, human language. Avoid robotic phrasing and repetitive sentence patterns.
+- Keep explanations concise and practical.
+- Write as an experienced developer, not a generic assistant.
+- These rules apply to the entire repository. Any violation must be corrected immediately, including in AI generated content.
 
 ## Shared layout expectations
 - Header and footer markup must stay consistent across all pages.

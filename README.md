@@ -1,6 +1,6 @@
 # Katalyst Website
 
-Static marketing website for **katalyst.com.my**, built with semantic HTML, Tailwind CSS, and lightweight JavaScript. The project uses Vite for local development and production builds, with Handlebars partials for shared layout and Vercel for static hosting.
+Static marketing website for **katalyst.com.my** built with semantic HTML, Tailwind CSS, and lightweight JavaScript. Vite handles local development and production builds. Handlebars partials keep the shared layout consistent, and Vercel serves the static site.
 
 ## Tech Stack
 
@@ -64,17 +64,17 @@ Static marketing website for **katalyst.com.my**, built with semantic HTML, Tail
 
 ## Available Scripts
 
-- `npm run dev` — start Vite dev server with live reload (port 3000)
-- `npm run build` — production build output to `dist/` via Vite
-- `npm run format` — format all HTML/CSS/JS/JSON/MJS files with Prettier (including `partials/`)
-- `npm run test` — validate HTML SEO baseline and clean internal links
-- `npm run images:optimize` — generate optimized `.webp` files from `.png/.jpg/.jpeg`
+- `npm run dev`: start Vite dev server with live reload (port 3000)
+- `npm run build`: production build output to `dist/` via Vite
+- `npm run format`: format all HTML/CSS/JS/JSON/MJS files with Prettier (including `partials/`)
+- `npm run test`: validate HTML SEO baseline and clean internal links
+- `npm run images:optimize`: generate optimized `.webp` files from `.png/.jpg/.jpeg`
 
 ## Content and Layout Notes
 
 - Header and footer are Handlebars partials (`partials/header.html`, `partials/footer.html`) injected at build/dev time by `vite-plugin-handlebars`. Use `{{> header}}` and `{{> footer footerClass="..." footerCardClass="..."}}` in page files.
 - Keep internal links clean (e.g. `/contact-us`, not `/contact-us.html`).
-- Keep JavaScript in `assets/js/` — avoid inline scripts.
+- Keep JavaScript in `assets/js/`. Avoid inline scripts.
 - Active navigation state is resolved in `assets/js/main.js` based on `window.location.pathname`.
 
 ## Formatting
