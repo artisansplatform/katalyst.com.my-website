@@ -2,7 +2,7 @@
   <!-----------------Navbar-------------------->
   <nav id="siteHeader" class="px-5 fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-[998] w-full">
     <div
-      class="bg-white/30 backdrop-blur-xl border border-white ps-5 sm:ps-8 pe-5 py-[13px] flex items-center justify-between gap-5 rounded-[78px] mx-auto max-w-[1054px] transition-all duration-200"
+      class="bg-white/30 backdrop-blur-xl border border-white ps-5 sm:ps-8 pe-5 py-[13px] xl:py-2 flex items-center justify-between gap-5 rounded-[78px] mx-auto max-w-[1054px] transition-all duration-200"
     >
       <!-- Logo -->
       <a href="/" class="text-xl font-semibold">
@@ -21,15 +21,15 @@
 
       <!-- Menu -->
       <ul
-        class="hidden lg:flex items-center gap-x-3 text-nowrap font-dm-sans font-normal text-black text-base tracking-[1%]"
+        class="hidden lg:flex items-center gap-x-3 xl:gap-x-1 text-nowrap font-dm-sans font-normal text-black text-base tracking-[1%]"
       >
         <li>
-          <a href="/" class="nav-link px-[23px] py-[11px] rounded-[60px]">Home</a>
+          <a href="/" class="nav-link px-[23px] xl:px-[16px] py-[11px] rounded-[60px]">Home</a>
         </li>
         <li>
           <div
             id="productsToggle"
-            class="nav-link flex items-center gap-x-2 ps-4.5 pe-[15px] py-[11px] rounded-[60px] cursor-pointer"
+            class="nav-link flex items-center gap-x-2 ps-4.5 pe-[15px] xl:ps-[14px] xl:pe-[12px] py-[11px] rounded-[60px] cursor-pointer"
           >
             Products
 
@@ -49,14 +49,35 @@
           </div>
         </li>
         <li>
-          <a href="/solutions" class="nav-link px-[23px] py-[11px] rounded-[60px]">Solutions</a>
+          <a href="/solutions" class="nav-link px-[23px] xl:px-[16px] py-[11px] rounded-[60px]">Solutions</a>
         </li>
         <li>
-          <a href="/why-katalyst" class="nav-link px-[23px] py-[11px] rounded-[60px]">Why Katalyst AI</a>
+          <a href="/why-katalyst" class="nav-link px-[23px] xl:px-[16px] py-[11px] rounded-[60px]">Why Katalyst AI</a>
         </li>
       </ul>
 
-      <a href="/contact-us" class="hidden lg:block btn-primary !px-4 !py-[13.5px]">Contact Us</a>
+      <div class="hidden xl:flex items-center gap-3">
+        <!-- Powered by Credence -->
+        <div class="flex flex-col items-center gap-1 shrink-0">
+          <span
+            class="text-[9px] font-extrabold uppercase tracking-[0.1em] text-slate-500 leading-none whitespace-nowrap"
+            >Powered by</span
+          >
+          <div class="flex items-center h-11 px-4 rounded-[60px] bg-white/20 shadow-[0px_9px_44px_0px_#EDCBFF]">
+            <img src="assets/images/Partners/credence-logo-color.webp" alt="Credence" class="w-auto h-10" />
+          </div>
+        </div>
+        <!-- Collaboration with PIKOM -->
+        <div class="flex flex-col items-center gap-1 shrink-0">
+          <span
+            class="text-[9px] font-extrabold uppercase tracking-[0.1em] text-slate-500 leading-none whitespace-nowrap"
+            >Collaboration with</span
+          >
+          <div class="flex items-center h-11 px-4 rounded-[60px] bg-white/20 shadow-[0px_9px_44px_0px_#EDCBFF]">
+            <img src="assets/images/Partners/pikom-logo.webp" alt="PIKOM" class="w-auto h-6" />
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <!------- Product DropDown -------->
@@ -155,7 +176,19 @@
           >
         </div>
 
-        <div class="pt-3">
+        <div class="flex flex-col items-start gap-5 pt-3">
+          <div class="flex flex-col items-start gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.1em] text-slate-400">Powered by</span>
+            <div class="flex items-center px-4 py-1 rounded-[60px] bg-white/20 shadow-[0px_9px_44px_0px_#EDCBFF]">
+              <img src="assets/images/Partners/credence-logo-color.webp" alt="Credence" class="w-auto h-10" />
+            </div>
+          </div>
+          <div class="flex flex-col items-start gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.1em] text-slate-400">Collaboration with</span>
+            <div class="flex items-center h-12 px-4 rounded-[60px] bg-white/20 shadow-[0px_9px_44px_0px_#EDCBFF]">
+              <img src="assets/images/Partners/pikom-logo.webp" alt="PIKOM" class="w-auto h-6" />
+            </div>
+          </div>
           <a href="/contact-us" class="btn-primary !px-4 !py-3">Contact Us</a>
         </div>
       </div>
