@@ -407,6 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       li.addEventListener("click", () => {
         select.value = option.value;
+        select.dispatchEvent(new Event("change"));
         trigger.querySelector(".select-text").textContent = option.text;
 
         // update active item
@@ -420,8 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dropdown.appendChild(li);
     });
 
-    wrapper.appendChild(trigger);
-    wrapper.appendChild(dropdown);
+    select.after(trigger, dropdown);
 
     // Toggle dropdown
     trigger.addEventListener("click", (e) => {
@@ -442,6 +442,68 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // --------------- Contact form validation ----------
+
+  const contactForm = document.getElementById("contactUsForm");
+
+  if (contactForm) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^\+?[\d\s\-()]{7,20}$/;
+
+    const rules = {
+      first_name: (value) => (value ? "" : "Please enter your first name."),
+      email: (value) => {
+        if (!value) return "Please enter your email address.";
+        return emailPattern.test(value) ? "" : "Please enter a valid email address.";
+      },
+      phone: (value) => {
+        if (!value) return "Please enter your phone number.";
+        const digits = value.replace(/\D/g, "").length;
+        return phonePattern.test(value) && digits >= 7 && digits <= 15 ? "" : "Please enter a valid phone number.";
+      },
+      subject: (value) => (value ? "" : "Please select a subject."),
+    };
+
+    // The subject select is hidden, so the error outline goes on its custom trigger
+    const outlineTarget = (field) =>
+      field.classList.contains("native-select") ? field.parentElement.querySelector(".select-trigger") : field;
+
+    const validateField = (field) => {
+      const message = rules[field.name](field.value.trim());
+      const error = document.getElementById(`${field.id}-error`);
+      const target = outlineTarget(field);
+
+      error.textContent = message;
+      error.classList.toggle("hidden", !message);
+      field.setAttribute("aria-invalid", message ? "true" : "false");
+      target?.classList.toggle("!outline-red-500", !!message);
+
+      return !message;
+    };
+
+    const fields = Object.keys(rules).map((name) => contactForm.elements[name]);
+
+    contactForm.addEventListener("submit", (e) => {
+      const invalid = fields.filter((field) => !validateField(field));
+      if (!invalid.length) return;
+
+      e.preventDefault();
+      const first = invalid[0];
+      first.classList.contains("native-select")
+        ? outlineTarget(first).scrollIntoView({ block: "center" })
+        : first.focus();
+    });
+
+    // Once a field shows an error, re-check it as the user fixes it
+    fields.forEach((field) => {
+      const recheck = () => {
+        if (field.getAttribute("aria-invalid") === "true") validateField(field);
+      };
+      field.addEventListener("input", recheck);
+      field.addEventListener("change", recheck);
+    });
+  }
 
   // ---------------- initStepScroll-----------------
 
