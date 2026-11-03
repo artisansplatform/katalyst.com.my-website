@@ -97,6 +97,19 @@
                     </div>
                   </div>
                   <div class="input-group">
+                    <label for="company">Company <span class="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      placeholder="Enter company name"
+                      autocomplete="organization"
+                      required
+                      aria-describedby="company-error"
+                    />
+                    <p id="company-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
+                  </div>
+                  <div class="input-group">
                     <label for="email">Email address <span class="text-red-500" aria-hidden="true">*</span></label>
                     <input
                       type="email"
@@ -129,6 +142,7 @@
                       <option value="general">General Inquiry</option>
                       <option value="support">Support Request</option>
                       <option value="partnership">Partnership</option>
+                      <option value="demo">Request Demo</option>
                     </select>
                     <p id="subject-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
                   </div>

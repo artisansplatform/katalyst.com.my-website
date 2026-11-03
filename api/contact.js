@@ -9,12 +9,14 @@ export default async function handler(req, res) {
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
   const firstName = clean(body.first_name, 100);
   const lastName = clean(body.last_name, 100);
+  const company = clean(body.company, 200);
   const email = clean(body.email, 200);
   const phone = clean(body.phone, 30);
-  const subject = clean(body.subject, 50);
+  const subjectLabels = { general: "General Inquiry", support: "Support Request", partnership: "Partnership", demo: "Request Demo" };
+  const subject = subjectLabels[clean(body.subject, 50)] || clean(body.subject, 50);
   const message = String(body.message ?? "").trim().slice(0, 5000);
 
-  if (!firstName || !emailPattern.test(email) || !phone || !subject) {
+  if (!firstName || !company || !emailPattern.test(email) || !phone || !subject) {
     return res.status(400).json({ error: "Invalid form data" });
   }
 
@@ -32,7 +34,7 @@ export default async function handler(req, res) {
       to: process.env.MAIL_TO,
       replyTo: email,
       subject: `Website enquiry (${subject}): ${firstName} ${lastName}`.trim(),
-      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\n\n${message}`,
+      text: `Name: ${firstName} ${lastName}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\n\n${message}`,
     });
     return res.status(200).json({ ok: true });
   } catch (err) {
