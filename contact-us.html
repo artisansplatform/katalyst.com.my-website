@@ -70,20 +70,7 @@
               <div
                 class="px-[30px] pt-[30px] pb-[25px] w-full max-w-[700px] lg:max-w-[530px] mx-auto lg:mx-0 rounded-[20px] bg-white h-fit"
               >
-                <form
-                  id="contactUsForm"
-                  class="flex flex-col gap-6"
-                  action="https://api.web3forms.com/submit"
-                  method="POST"
-                  novalidate
-                >
-                  <input type="hidden" name="access_key" value="eca879e8-efdc-4b0f-a5ba-27bdc4d0aa19" />
-                  <input
-                    type="hidden"
-                    name="redirect"
-                    value="https://www.katalyst.com.my/contact-us?formSubmitted=true"
-                  />
-
+                <form id="contactUsForm" class="flex flex-col gap-6" action="/api/contact" method="POST" novalidate>
                   <div class="grid md:grid-cols-2 gap-x-4 gap-y-6">
                     <div class="input-group">
                       <label for="firstName">First Name <span class="text-red-500" aria-hidden="true">*</span></label>
