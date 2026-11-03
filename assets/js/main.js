@@ -81,6 +81,29 @@ document.addEventListener("DOMContentLoaded", () => {
     mqLg.addEventListener("change", handleBreakpoint);
   }
 
+  // Header goes full width once the page is scrolled ====
+  const siteHeader = document.getElementById("siteHeader");
+  const headerBar = siteHeader?.firstElementChild;
+  const productsDropdown = document.getElementById("productsDropdown");
+
+  if (siteHeader && headerBar) {
+    const swapClasses = (el, from, to, on) => {
+      if (!el) return;
+      el.classList.remove(...(on ? from : to));
+      el.classList.add(...(on ? to : from));
+    };
+
+    const updateHeader = () => {
+      const scrolled = window.scrollY > 10;
+      swapClasses(siteHeader, ["top-4", "md:top-8", "px-5"], ["top-0", "px-0"], scrolled);
+      swapClasses(headerBar, ["rounded-[78px]", "max-w-[1240px]"], ["rounded-none", "max-w-full"], scrolled);
+      swapClasses(productsDropdown, ["top-[120px]"], ["top-[88px]"], scrolled);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+
   document.querySelectorAll(".site-header").forEach((header) => {
     /* =========================
            DESKTOP DROPDOWN
@@ -168,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "hero",
       )
       .from(
-        "#heroBtn",
+        "#heroBtn, #heroPartners",
         {
           y: 50,
           scale: 0,
