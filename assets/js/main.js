@@ -484,11 +484,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fields = Object.keys(rules).map((name) => contactForm.elements[name]);
 
-    contactForm.addEventListener("submit", (e) => {
-      const invalid = fields.filter((field) => !validateField(field));
-      if (!invalid.length) return;
+    const submitButton = contactForm.querySelector("[type='submit']");
 
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const invalid = fields.filter((field) => !validateField(field));
+
+      if (!invalid.length) {
+        submitButton.disabled = true;
+        try {
+          const res = await fetch(contactForm.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+          });
+          if (!res.ok) throw new Error();
+          contactForm.reset();
+          formSuccessMessage?.classList.remove("hidden");
+          formSuccessMessage?.scrollIntoView({ block: "center" });
+        } catch {
+          alert("Sorry, we could not send your message. Please try again.");
+        } finally {
+          submitButton.disabled = false;
+        }
+        return;
+      }
+
       const first = invalid[0];
       first.classList.contains("native-select")
         ? outlineTarget(first).scrollIntoView({ block: "center" })

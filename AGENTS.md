@@ -43,4 +43,4 @@
 
 ## Security and hosting notes
 - Security headers and clean URL rewrites are configured in `vercel.json`.
-- Do not add server-only features; this repo is static-hosted.
+- Do not add server-only features; this repo is static-hosted. The one exception is `api/contact.js` (Vercel function, SMTP via env vars `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `MAIL_TO`).
