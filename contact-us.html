@@ -75,6 +75,7 @@
                   class="flex flex-col gap-6"
                   action="https://api.web3forms.com/submit"
                   method="POST"
+                  novalidate
                 >
                   <input type="hidden" name="access_key" value="eca879e8-efdc-4b0f-a5ba-27bdc4d0aa19" />
                   <input
@@ -85,50 +86,71 @@
 
                   <div class="grid md:grid-cols-2 gap-x-4 gap-y-6">
                     <div class="input-group">
-                      <label>First Name</label>
-                      <input type="text" name="first_name" placeholder="Enter First Name" />
+                      <label for="firstName">First Name <span class="text-red-500" aria-hidden="true">*</span></label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="first_name"
+                        placeholder="Enter First Name"
+                        autocomplete="given-name"
+                        required
+                        aria-describedby="firstName-error"
+                      />
+                      <p id="firstName-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
                     </div>
                     <div class="input-group">
-                      <label>Last Name</label>
-                      <input type="text" name="last_name" placeholder="Enter Last Name" />
+                      <label for="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="last_name"
+                        placeholder="Enter Last Name"
+                        autocomplete="family-name"
+                      />
                     </div>
                   </div>
                   <div class="input-group">
-                    <label>Email address</label>
-                    <input type="email" name="email" placeholder="Enter email address" />
+                    <label for="email">Email address <span class="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Enter email address"
+                      autocomplete="email"
+                      required
+                      aria-describedby="email-error"
+                    />
+                    <p id="email-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
                   </div>
                   <div class="input-group">
-                    <label>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="Enter phone number" />
+                    <label for="phone">Phone Number <span class="text-red-500" aria-hidden="true">*</span></label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      placeholder="Enter phone number"
+                      autocomplete="tel"
+                      required
+                      aria-describedby="phone-error"
+                    />
+                    <p id="phone-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
                   </div>
                   <div class="input-group custom-select">
-                    <label>Subject</label>
-                    <select name="subject" id="subject" class="native-select">
+                    <label for="subject">Subject <span class="text-red-500" aria-hidden="true">*</span></label>
+                    <select name="subject" id="subject" class="native-select" required aria-describedby="subject-error">
                       <option value="" selected disabled>Select</option>
                       <option value="general">General Inquiry</option>
                       <option value="support">Support Request</option>
                       <option value="partnership">Partnership</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="support">Support Request</option>
-                      <option value="partnership">Partnership</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="support">Support Request</option>
-                      <option value="partnership">Partnership</option>
                     </select>
+                    <p id="subject-error" class="field-error hidden mt-1.5 font-inter text-sm text-red-500"></p>
                   </div>
                   <div class="input-group">
-                    <label>Message</label>
-                    <textarea name="message" placeholder="Enter message"></textarea>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter message"></textarea>
                   </div>
                   <button type="submit" class="py-3 btn-primary w-fit">Submit</button>
                 </form>
-              </div>
-
-              <div class="description sm:mt-[6px] font-dm-sans max-w-[700px] lg:max-w-[530px] mx-auto lg:mx-0">
-                <div class="ps-7.5">
-                  Not Interested to fill the form?&nbsp;
-                  <span class="font-bold underline cursor-pointer text-purple">Book A Call</span>
-                </div>
               </div>
             </div>
           </div>
