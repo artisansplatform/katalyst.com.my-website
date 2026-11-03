@@ -136,7 +136,15 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" placeholder="Enter message"></textarea>
                   </div>
-                  <button type="submit" class="py-3 btn-primary w-fit">Submit</button>
+                  <button type="submit" class="py-3 btn-primary w-fit disabled:opacity-60 disabled:cursor-not-allowed">
+                    Submit
+                  </button>
+                  <p
+                    id="formStatus"
+                    class="hidden rounded-xl border px-4 py-3 font-dm-sans text-sm font-medium"
+                    role="status"
+                    aria-live="polite"
+                  ></p>
                 </form>
               </div>
             </div>

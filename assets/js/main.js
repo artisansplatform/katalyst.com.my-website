@@ -485,6 +485,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = Object.keys(rules).map((name) => contactForm.elements[name]);
 
     const submitButton = contactForm.querySelector("[type='submit']");
+    const formStatus = document.getElementById("formStatus");
+    const showStatus = (ok, text) => {
+      formStatus.textContent = text;
+      formStatus.className = `rounded-xl border px-4 py-3 font-dm-sans text-sm font-medium ${
+        ok ? "border-mint-green bg-mint-green/10 text-black-soft" : "border-red-500 bg-red-50 text-red-700"
+      }`;
+      formStatus.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    };
 
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -492,6 +500,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!invalid.length) {
         submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+        formStatus.className = "hidden";
         try {
           const res = await fetch(contactForm.action, {
             method: "POST",
@@ -500,12 +510,12 @@ document.addEventListener("DOMContentLoaded", () => {
           });
           if (!res.ok) throw new Error();
           contactForm.reset();
-          formSuccessMessage?.classList.remove("hidden");
-          formSuccessMessage?.scrollIntoView({ block: "center" });
+          showStatus(true, "Thank you! Your message has been sent. We will get in touch soon.");
         } catch {
-          alert("Sorry, we could not send your message. Please try again.");
+          showStatus(false, "Sorry, we could not send your message. Please try again.");
         } finally {
           submitButton.disabled = false;
+          submitButton.textContent = "Submit";
         }
         return;
       }
