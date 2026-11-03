@@ -453,6 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const rules = {
       first_name: (value) => (value ? "" : "Please enter your first name."),
+      company: (value) => (value ? "" : "Please enter your company name."),
       email: (value) => {
         if (!value) return "Please enter your email address.";
         return emailPattern.test(value) ? "" : "Please enter a valid email address.";
